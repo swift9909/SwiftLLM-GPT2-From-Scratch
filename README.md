@@ -79,7 +79,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - OpenAI for the GPT-2 model
 - PyTorch Community
 - [Vizuara's YouTube Playlist](https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu) for educational content on GPT-2 implementation
-
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/51308642/52ad60fe-0b66-4955-8390-cffcbecd8c0a/paste.txt
-[2] https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu
