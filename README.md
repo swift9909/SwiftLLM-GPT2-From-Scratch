@@ -1,69 +1,86 @@
-# SwiftLLM-GPT2-From-Scratch
+# SwiftLLM-GPT2-From-Scratch 🤖📝
 
-This repository contains a PyTorch implementation of the GPT-2 architecture from scratch. It includes functionality for downloading pre-trained weights, fine-tuning on custom datasets, and generating text. The implementation is modular and allows for easy modification of hyperparameters or model architecture.
-Features
-Full implementation of the GPT-2 architecture in PyTorch.
-Automatic downloading of pre-trained weights from OpenAI's public storage.
-Fine-tuning support for custom datasets.
-Text generation using the pre-trained or fine-tuned model.
-Requirements
-Before running the code, ensure you have the following installed:
-Python Version
-Python 3.8 or higher
-Required Libraries
-Install the required libraries using pip:
-bash
+## Overview
+This repository contains a comprehensive PyTorch implementation of the GPT-2 language model, featuring:
+- Full GPT-2 architecture implementation
+- Automatic pre-trained weight downloading
+- Custom model initialization
+- Text generation capabilities
+- Fine-tuning support
+
+## 🚀 Features
+- Complete GPT-2 model architecture
+- Support for multiple model sizes (124M, 355M, 774M, 1558M)
+- Pre-trained weight loading
+- Flexible text generation
+- Easy fine-tuning mechanism
+
+## 📋 Prerequisites
+
+### System Requirements
+- Python 3.8+
+- PyTorch
+- TensorFlow
+- Tiktoken
+
+### Installation
+```bash
 pip install torch tensorflow numpy requests tqdm tiktoken
-How to Use
-1. Clone the Repository
-Clone this repository to your local machine:
-bash
-git clone https://github.com/your-username/gpt2-from-scratch.git
-cd gpt2-from-scratch
-2. Download Pre-trained Weights
-The script automatically downloads pre-trained weights for GPT-2 when you run it. You can specify the model size (124M, 355M, 774M, or 1558M) in the code.
-Example:
-python
+```
+
+## 🔧 Quick Start
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/your-username/gpt2-implementation.git
+cd gpt2-implementation
+```
+
+### 2. Initialize Model
+```python
 model_size = "124M"  # Choose from "124M", "355M", "774M", "1558M"
-models_dir = "./models"  # Directory to store downloaded models
+models_dir = "./models"
 model = initialize_gpt2_with_params(model_size, models_dir)
-3. Fine-tune on Custom Data
-To fine-tune the model on your dataset:
-Prepare Your Dataset
-Create a list of text samples (e.g., sentences or paragraphs).
-Use tiktoken to tokenize your data and feed it into a PyTorch DataLoader.
-Example:
-python
-from torch.utils.data import DataLoader
+```
 
-texts = ["This is an example sentence.", "Another example for training."]
-tokenizer = tiktoken.get_encoding("gpt2")
-max_length = 1024
+## 📝 Usage Examples
 
-# Create dataset and dataloader
-dataset = GPT2Dataset(texts, tokenizer, max_length)
+### Text Generation
+```python
+start_tokens = torch.tensor([[50256]])  # GPT-2 start token
+generated_text = generate_text(model, start_tokens, max_length=50)
+```
+
+### Fine-tuning
+```python
+# Prepare your dataset
+dataset = CustomDataset(texts, tokenizer, max_length=1024)
 dataloader = DataLoader(dataset, batch_size=8, shuffle=True)
-Fine-tune the Model
-Use the provided fine_tune function to train the model on your dataset:
-python
+
+# Fine-tune model
 fine_tune(model, dataloader, epochs=3)
-Fine-tuning Code Example:
-python
-def fine_tune(model, data_loader, epochs):
-    criterion = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
-    model.train()
-    for epoch in range(epochs):
-        for batch in data_loader:
-            inputs, targets = batch
-            optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = criterion(outputs.view(-1, vocab_size), targets.view(-1))
-            loss.backward()
-            optimizer.step()
-        print(f"Fine-tuning Epoch {epoch+1}/{epochs}, Loss: {loss.item()}")
-4. Generate Text
-Use the generate_text function to generate text from a starting token.
-Example:
-python
-start_tokens = torch.tensor([[50256]])  # Start token for GPT-2 (e.g.,
+```
+
+## 🛠 Customization
+- Easily modify model hyperparameters
+- Support for different model sizes
+- Flexible architecture for various NLP tasks
+
+## 📚 Model Sizes Supported
+- 124M parameters
+- 355M parameters
+- 774M parameters
+- 1558M parameters
+
+## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+[Add your license here]
+
+## 🌟 Acknowledgements
+- OpenAI for the GPT-2 model
+- PyTorch Community
+
+Citations:
+[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/51308642/52ad60fe-0b66-4955-8390-cffcbecd8c0a/paste.txt
